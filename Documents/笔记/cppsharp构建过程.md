@@ -5,3 +5,5 @@
 5. 在llvm/llvm.lua里修改get_vs_version 直接返回你需要的vs版本。
 6. 在llvm.lua里searchLLVM里将LLVMRootDirDebug， LLVMRootDirRelease修改为你安装llvm的路径。
 7. 按照GettingStarted.mk里的指令执行build.sh
+
+版本是llvm 11
