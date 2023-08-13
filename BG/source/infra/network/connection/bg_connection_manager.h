@@ -1,5 +1,6 @@
-#include "bg_net_connection_interface.h"
-#include "thirdparty/asio/include/asio.hpp"
+#pragma once
+#include "network/connection/bg_net_connection_interface.h"
+#include "asio.hpp"
 namespace BG
 {
 	class ConnectionManager
@@ -15,11 +16,11 @@ namespace BG
 
 		void tcpListen(UInt16 port);
 
-		void tcpAcceptCB(asio::ip::tcp::socket* socket);
+		void tcpAcceptCB(const asio::error_code& error, const std::shared_ptr<asio::ip::tcp::socket> socket);
 
 		asio::io_context& getIOContext();
 	private:
-		UnorderedMap<UInt64, NetConnectionInterface> m_connection_map;
+		BGUnorderedMap<UInt64, NetConnectionInterface*> m_connection_map;
 		asio::io_context m_io_context;
 		std::unique_ptr<std::thread> m_io_thread;
 		asio::ip::tcp::socket m_tcp_socket;

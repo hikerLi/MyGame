@@ -1,3 +1,4 @@
+#pragma once
 #include "network/connection/bg_net_connection_interface.h"
 
 class ConnectionManager;

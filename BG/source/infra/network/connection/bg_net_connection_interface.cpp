@@ -2,13 +2,13 @@
 #include "thirdparty/fmt/include/fmt/format.h"
 namespace BG
 {
-	NetAddr::NetAddr(const String ip, UInt16 port, NetProtocalType protocal_type)
+	NetAddr::NetAddr(const BGString ip, UInt16 port, const NetProtocalType& protocal_type)
 		:m_ip(ip), m_port(port), m_protocal_type(protocal_type)
 	{
 	}
-	String NetAddr::getAddress()
+	BGString NetAddr::getAddress()
 	{
-		return fmt::format("{}:{}:{}", m_ip, m_port, m_protocal_type);
+		return fmt::format("{}:{}:{}", m_ip.c_str(), m_port, int(m_protocal_type));
 		//return m_ip;
 	}
 }

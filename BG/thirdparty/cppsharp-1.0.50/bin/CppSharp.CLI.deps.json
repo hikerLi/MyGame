@@ -1,0 +1,98 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "CppSharp.CLI/1.0.0": {
+        "dependencies": {
+          "CppSharp.Generator": "1.0.0"
+        },
+        "runtime": {
+          "CppSharp.CLI.dll": {}
+        }
+      },
+      "CppSharp/1.0.0": {
+        "runtime": {
+          "CppSharp.dll": {}
+        }
+      },
+      "CppSharp.AST/1.0.0": {
+        "runtime": {
+          "CppSharp.AST.dll": {}
+        }
+      },
+      "CppSharp.Generator/1.0.0": {
+        "dependencies": {
+          "CppSharp.Parser": "1.0.0"
+        },
+        "runtime": {
+          "CppSharp.Generator.dll": {}
+        }
+      },
+      "CppSharp.Parser/1.0.0": {
+        "dependencies": {
+          "CppSharp": "1.0.0",
+          "CppSharp.AST": "1.0.0",
+          "CppSharp.Parser.CLI": "1.0.0",
+          "CppSharp.Runtime": "1.0.0"
+        },
+        "runtime": {
+          "CppSharp.Parser.dll": {}
+        }
+      },
+      "CppSharp.Parser.CLI/1.0.0": {
+        "dependencies": {
+          "CppSharp.CppParser": "1.0.0"
+        },
+        "runtime": {
+          "CppSharp.Parser.CLI.dll": {}
+        }
+      },
+      "CppSharp.Runtime/1.0.0": {
+        "runtime": {
+          "CppSharp.Runtime.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CppSharp.CLI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CppSharp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CppSharp.AST/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CppSharp.Generator/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CppSharp.Parser/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CppSharp.Parser.CLI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CppSharp.Runtime/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

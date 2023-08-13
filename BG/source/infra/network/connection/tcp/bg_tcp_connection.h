@@ -1,11 +1,16 @@
+#pragma once
 #include "network/connection/bg_net_connection_interface.h"
-#include "thirdparty/asio/include/asio.hpp"
-class ConnectionManager;
+
 namespace BG
 {
+	class ConnectionManager;
 	class TCPConnection : public NetConnectionInterface
 	{
 	public:
+
+		TCPConnection();
+		virtual ~TCPConnection();
+
 		virtual void initialize(const ConnectionManager* connection_manager);
 
 		virtual Bool connect(const NetAddr& address);

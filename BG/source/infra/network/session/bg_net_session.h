@@ -1,3 +1,4 @@
+#pragma once
 #include "common/type/bg_base_type.h"
 
 namespace BG
@@ -24,6 +25,6 @@ namespace BG
 		UInt64 m_session_id;
 		NetSessionStatus m_net_status;
 
-		Array<UInt64, PER_SESSION_MAX_CONNECTION_NUM> m_connection_ids;
+		BGArray<UInt64, PER_SESSION_MAX_CONNECTION_NUM> m_connection_ids;
 	};
 }

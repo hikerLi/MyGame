@@ -14,19 +14,22 @@ namespace BG
 	}
 	void ConnectionManager::runIOThread()
 	{
-		m_io_context.run();
+		//m_io_context.run();
 	}
 	void ConnectionManager::tcpListen(UInt16 port)
 	{
 		m_tcp_acceptor = asio::ip::tcp::acceptor(m_io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), port));
 		m_tcp_socket = asio::ip::tcp::socket(m_io_context);
-		m_tcp_acceptor.async_accept(m_tcp_socket, std::bind(tcpAcceptCB, this));
+		m_tcp_acceptor.async_accept(m_tcp_socket, [this, tcp_socket = std::make_shared<asio::ip::tcp::socket>(m_io_context)](const asio::error_code& error)
+			{
+				tcpAcceptCB(error, tcp_socket);
+			});
 	}
-	void ConnectionManager::tcpAcceptCB(asio::ip::tcp::socket* socket)
+	void ConnectionManager::tcpAcceptCB(const asio::error_code& error, const std::shared_ptr<asio::ip::tcp::socket> socket)
 	{
 		//create tcp_listner,确定创建tcpconnection和session
 		TCPConnection* tcp_connection = new TCPConnection();
-		tcp_connection->initialize(this, socket);
+		//tcp_connection->initialize(this, socket);
 		//m_connection_map[] = tcp_connection;
 	}
 	asio::io_context& ConnectionManager::getIOContext()

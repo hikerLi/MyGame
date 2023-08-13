@@ -1,28 +1,30 @@
+#pragma once
 #include "common/type/bg_base_type.h"
 
 namespace BG
 {
-
-	ENUM NetProtocalType
-	{
-		NetProtocalType_TCP = 0,
-		NetProtocalType_KCP,
-		NetProtocalType_WS,
-		NetProtocalType_HTTP
-	};
-
+	class ConnectionManager;
 	class NetAddr
 	{
 	public:
-		NetAddr(const String ip, UInt16 port, NetProtocalType protocal_type);
-		String getAddress();
+		ENUM NetProtocalType
+		{
+			NetProtocalType_TCP = 0,
+			NetProtocalType_KCP = 1,
+			NetProtocalType_WS = 2,
+			NetProtocalType_HTTP = 3
+		};
+
+		NetAddr(const BGString ip, UInt16 port, const NetProtocalType& protocal_type);
+		BGString getAddress();
+
+
 	private:
-		String m_ip;
+		BGString m_ip;
 		UInt16 m_port;
 		NetProtocalType m_protocal_type;
 	};
 
-	class ConnectionManager;
 	class NetConnectionInterface
 	{
 	public:

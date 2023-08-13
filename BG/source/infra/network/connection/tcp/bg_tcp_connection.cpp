@@ -2,7 +2,15 @@
 #include "network/connection/bg_connection_manager.h"
 namespace BG
 {
-	void TCPConnection::initialize(const ConnectionManager* connection_manager)
+	TCPConnection::TCPConnection()
+	{
+	}
+
+	TCPConnection::~TCPConnection()
+	{
+	}
+
+	void TCPConnection::initialize(const BG::ConnectionManager* connection_manager)
 	{
 
 	}

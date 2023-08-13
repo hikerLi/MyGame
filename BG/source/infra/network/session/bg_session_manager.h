@@ -1,3 +1,4 @@
+#pragma once
 #include "network/session/bg_net_session.h"
 
 namespace BG
@@ -8,6 +9,6 @@ namespace BG
 	public:
 		void tick();
 	private:
-		UnorderedMap<UInt64, NetSession*> m_session_map;
+		BGUnorderedMap<UInt64, NetSession*> m_session_map;
 	};
 }
