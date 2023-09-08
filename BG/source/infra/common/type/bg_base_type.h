@@ -5,7 +5,7 @@
 #include <array>
 #include <memory>
 #define UInt16 unsigned short
-#define UInt32 unsigned int32
+#define UInt32 unsigned int
 #define UInt64 unsigned long long
 #define BGString std::string
 #define BGUnorderedMap std::unordered_map
