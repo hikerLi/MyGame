@@ -5,7 +5,7 @@ namespace BG
 	void CommandConfig::parserParam(UInt32 argc, void** argv)
 	{
 		BGString key, value;
-		for (int i = 0; i < argc; i++)
+		for (UInt32 i = 0; i < argc; i++)
 		{
 			BGString item = (char*)argv[i];
 			if (key.empty() && item.size() > 2 && item[0] == '-' && item[1] == '-')

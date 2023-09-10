@@ -1,0 +1,15 @@
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${ThirdParty_Path}/thirdparty/mono-7.0.10/include/mono-2.0)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${ThirdParty_Path}/thirdparty/recastnavigation-1.6.0/include)
+
+set(MONO_LIB_PATH "${CMAKE_CURRENT_SOURCE_DIR}/${ThirdParty_Path}/thirdparty/mono-7.0.10")
+target_link_libraries(${PROJECT_NAME} ${MONO_LIB_PATH}/lib/win/coreclr.dll)
+target_link_libraries(${PROJECT_NAME} ${MONO_LIB_PATH}/lib/win/coreclr.import.lib)
+target_link_libraries(${PROJECT_NAME} ${MONO_LIB_PATH}/lib/win/System.Private.CoreLib.dll)
+
+set(RECASTNAVIGATION_LIB_PATH "${CMAKE_CURRENT_SOURCE_DIR}/${ThirdParty_Path}/thirdparty/recastnavigation-1.6.0")
+target_link_libraries(${PROJECT_NAME} ${RECASTNAVIGATION_LIB_PATH}/lib/Detour.lib)
+target_link_libraries(${PROJECT_NAME} ${RECASTNAVIGATION_LIB_PATH}/lib/DetourCrowd.lib)
+target_link_libraries(${PROJECT_NAME} ${RECASTNAVIGATION_LIB_PATH}/lib/DetourTileCache.lib)
+target_link_libraries(${PROJECT_NAME} ${RECASTNAVIGATION_LIB_PATH}/lib/Recast.lib)
+target_link_libraries(${PROJECT_NAME} ${RECASTNAVIGATION_LIB_PATH}/lib/DebugUtils.lib)
