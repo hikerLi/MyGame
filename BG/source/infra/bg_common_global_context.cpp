@@ -2,6 +2,7 @@
 
 namespace BG
 {
+	CommonGlobalContext g_common_global_context;
 	CommonGlobalContext::CommonGlobalContext()
 	{
 	}

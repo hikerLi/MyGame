@@ -9,6 +9,7 @@ namespace BG
 {
 	void MonoRuntime::initialize(const BGString& appName)
 	{
+		mono_set_dirs("F:\\Projects\\MyGame\\BG\\thirdparty\\mono-7.0.10\\lib\\win\\net7.0", "");
 		auto domain = mono_jit_init(appName.c_str());
 
 		m_assembly_ptr = mono_domain_assembly_open(domain, (appName + ".dll").c_str());
