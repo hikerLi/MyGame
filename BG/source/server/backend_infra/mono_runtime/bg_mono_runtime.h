@@ -15,7 +15,7 @@ namespace BG
 		void initialize(const BGString& appName);
 
 		template<typename... Args>
-		BGSharedPtr<MonoObject> invokeMethod(const BGString& namespaceName, const BGString& className, const BGString& methodName, Args... args);
+		MonoObject* invokeMethod(const BGString& namespaceName, const BGString& className, const BGString& methodName, Args... args);
 
 		void end();
 
@@ -25,15 +25,29 @@ namespace BG
 	};
 
 	template<typename ...Args>
-	inline BGSharedPtr<MonoObject> MonoRuntime::invokeMethod(const BGString& namespaceName, const BGString& className, const BGString& methodName, Args ...args)
+	inline MonoObject* MonoRuntime::invokeMethod(const BGString& namespaceName, const BGString& className, const BGString& methodName, Args ...args)
 	{
-		MonoClass* klass = mono_class_from_name(m_image_ptr, namespaceName, className);
-		MonoMethod* method = mono_class_get_method_from_name(klass, methodName, sizeof(args));
-		BGVector<Monoobject*> params = {
+		MonoClass* klass = mono_class_from_name(m_image_ptr, namespaceName.c_str(), className.c_str());
+		UInt32 param_count = sizeof...(args);
+		MonoMethod* method = mono_class_get_method_from_name(klass, methodName.c_str(), param_count);
+		/*BGVector<MonoObject*> params = {
 			mono_value_box(mono_domain_get(), mono_get_double_class(), &args)...
-		};
+		};*/
+		void* params = nullptr;
+		if (param_count > 0)
+		{
+			params = { &args... };
+		}
 
-		BGSharedPtr<MonoObject> result_ptr = BGMakeShared<MonoObject>(mono_runtime_invoke(method, nullptr, params.data, nullptr));
-		return result_ptr;
+		MonoObject* exc = nullptr;
+		MonoObject* result = mono_runtime_invoke(method, nullptr, &params, &exc);
+		if (exc) {
+			MonoString* message = mono_object_to_string(exc, nullptr);
+			//std::cerr << "Exception thrown: " << mono_string_to_utf8(message) << std::endl;
+			return nullptr;
+		}
+		return result;
+		//BGSharedPtr<MonoObject> result_ptr;// = BGMakeShared<MonoObject>(mono_runtime_invoke(method, nullptr, &params, &exc));
+		//return result_ptr;
 	}
 }

@@ -8,8 +8,13 @@ namespace BG
 	public:
 		void initialize(BGString script_name);
 
+		void begin();
+
+		void run();
+
 		void end();
 	private:
 		MonoRuntime m_mono_runtime;
+		BGString m_script_name;
 	};
 }

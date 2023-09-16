@@ -1,5 +1,4 @@
-﻿using Common.common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,18 +9,13 @@ namespace GameServer.Application
 {
     public class BG_GameServer
     {
-        public static void Initialize(BG_Options option)
+        public static void Initialize()
         {
             Console.WriteLine("Hello World from BG_GameServer!");
         }
 
-        public static async void Run()
+        public static void Run()
         {
-            while (isRunning)
-            {
-
-                await Task.Delay(1);
-            }
         }
 
         public static void End()
@@ -29,6 +23,5 @@ namespace GameServer.Application
             Console.WriteLine("end BG_GameServer!");
         }
 
-        private static bool isRunning = false;
     }
 }
