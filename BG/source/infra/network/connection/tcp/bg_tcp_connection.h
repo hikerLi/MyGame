@@ -13,7 +13,7 @@ namespace BG
 
 		virtual void initialize();
 
-		virtual Bool connect(const NetAddr& address);
+		virtual Bool connect(const NetAddr& address, bool need_reconnect);
 
 		virtual void shutdown();
 
@@ -21,7 +21,13 @@ namespace BG
 
 		virtual void end();
 
+		virtual UInt32 send(const BGString& message);
+
+		virtual UInt32 recv(BGString& message);
+
+		void setSocket(const std::shared_ptr<asio::ip::tcp::socket> socket);
 	private:
-		
+		std::shared_ptr<asio::ip::tcp::socket> m_socket;
+		bool m_need_reconnect;
 	};
 }

@@ -13,4 +13,11 @@ namespace BG
 			}
 		}
 	}
+	NetSession* SessionManager::AllocateNetSession()
+	{
+		UInt64 session_id = m_session_id_allocator.allocateID();
+		NetSession* net_session = new NetSession(session_id);
+		m_session_map[session_id] = net_session;
+		return net_session;
+	}
 }

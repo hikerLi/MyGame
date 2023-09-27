@@ -3,6 +3,8 @@
 #include "network/connection/kcp/bg_kcp_connection.h"
 #include "network/connection/ssl/bg_ssl_connection.h"
 #include "common/utils/utils.h"
+
+#include "bg_common_global_context.h"
 namespace BG
 {
 	void ConnectionManager::initialize()
@@ -17,7 +19,7 @@ namespace BG
 	}
 	void ConnectionManager::runIOThread()
 	{
-		//m_io_context.run();
+		m_io_context.run();
 	}
 	void ConnectionManager::connect(const BGString& addr)
 	{
@@ -109,7 +111,9 @@ namespace BG
 		UInt64 connection_id = m_connection_id_allocator.allocateID();
 		TCPConnection* tcp_connection = new TCPConnection(connection_id, this);
 		tcp_connection->initialize();
+		tcp_connection->setSocket(socket);
 		//m_connection_map[] = tcp_connection;
+		g_common_global_context.m_session_manager.AllocateNetSession()->bindConnection(connection_id);
 	}
 
 	void ConnectionManager::kcpListen(UInt16 port)

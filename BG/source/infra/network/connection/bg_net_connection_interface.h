@@ -42,6 +42,10 @@ namespace BG
 
 		virtual void end() = 0;
 
+		virtual UInt32 send(const BGString& message) = 0;
+
+		virtual UInt32 recv(BGString& message) = 0;
+
 	protected:
 		UInt64 m_connection_id;
 		ConnectionManager* m_connection_manager;

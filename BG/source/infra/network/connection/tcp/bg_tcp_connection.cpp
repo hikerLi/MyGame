@@ -13,12 +13,11 @@ namespace BG
 	{
 
 	}
-	Bool TCPConnection::connect(const NetAddr& address)
+	Bool TCPConnection::connect(const NetAddr& address, bool need_reconnect)
 	{
-		asio::io_context io_context;
-		asio::ip::tcp::socket socket(io_context);
-		asio::ip::tcp::resolver resolver(io_context);
-		//asio::connect(socket, resolver.resolve(address.m_ip, address.m_port));
+		asio::ip::tcp::socket socket(m_connection_manager->getIOContext());
+		socket.connect(asio::ip::tcp::endpoint(asio::ip::address::from_string(address.m_ip), address.m_port));
+		m_need_reconnect = need_reconnect;
 		return true;
 	}
 	void TCPConnection::shutdown()
@@ -29,5 +28,19 @@ namespace BG
 	}
 	void TCPConnection::end()
 	{
+	}
+	UInt32 TCPConnection::send(const BGString& message)
+	{
+		m_socket->async_send(asio::buffer(message.c_str(), 0xFF));
+		return UInt32();
+	}
+	UInt32 TCPConnection::recv(BGString& message)
+	{
+		m_socket->async_receive(asio::buffer(message, 0xFF));
+		return UInt32();
+	}
+	void TCPConnection::setSocket(const std::shared_ptr<asio::ip::tcp::socket> socket)
+	{
+		m_socket = socket;
 	}
 }
