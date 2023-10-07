@@ -13,6 +13,8 @@ namespace BG
 
 	void CommonGlobalContext::initialize()
 	{
+		BGString inner_addr = m_command_config.getParamConfig("inner_addr");
+
 	}
 
 	void CommonGlobalContext::end()

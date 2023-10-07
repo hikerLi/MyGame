@@ -2,7 +2,10 @@
 
 namespace BG
 {
-	void SSLConnection::initialize(const ConnectionManager* connection_manager)
+	SSLConnection::SSLConnection(UInt64 connection_id, ConnectionManager* connection_manager) :NetConnectionInterface(connection_id, connection_manager)
+	{
+	}
+	void SSLConnection::initialize()
 	{
 	}
 	Bool SSLConnection::connect(const NetAddr& address)

@@ -7,7 +7,9 @@ namespace BG
 	class SSLConnection : public NetConnectionInterface
 	{
 	public:
-		virtual void initialize(const ConnectionManager* connection_manager);
+		SSLConnection(UInt64 connection_id, ConnectionManager* connection_manager);
+
+		virtual void initialize();
 
 		virtual Bool connect(const NetAddr& address);
 

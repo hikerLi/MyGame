@@ -6,5 +6,6 @@ namespace BG
 	{
 	public:
 		static BGString toCamelCase(const BGString& str);
+		static BGVector<BGString> splitString(const BGString& s, char delim);
 	};
 }

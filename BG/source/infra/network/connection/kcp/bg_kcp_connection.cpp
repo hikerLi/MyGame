@@ -2,7 +2,10 @@
 
 namespace BG
 {
-	void KCPConnection::initialize(const ConnectionManager* connection_manager)
+	KCPConnection::KCPConnection(UInt64 connection_id, ConnectionManager* connection_manager) :NetConnectionInterface(connection_id, connection_manager)
+	{
+	}
+	void KCPConnection::initialize()
 	{
 	}
 	Bool KCPConnection::connect(const NetAddr& address)

@@ -7,7 +7,8 @@ namespace BG
 	class KCPConnection : public NetConnectionInterface
 	{
 	public:
-		virtual void initialize(const ConnectionManager* connection_manager);
+		KCPConnection(UInt64 connection_id, ConnectionManager* connection_manager);
+		virtual void initialize();
 
 		virtual Bool connect(const NetAddr& address);
 

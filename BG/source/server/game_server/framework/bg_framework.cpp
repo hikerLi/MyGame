@@ -9,6 +9,7 @@ namespace BG
 		BGString script_name = g_common_global_context.m_command_config.getParamConfig("service_name");
 		script_name = "game_server";
 		m_script_manager.initialize(script_name);
+		g_common_global_context.initialize();
 	}
 
 	void Framework::begin()

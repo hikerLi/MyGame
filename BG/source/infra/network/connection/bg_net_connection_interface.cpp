@@ -11,4 +11,10 @@ namespace BG
 		return fmt::format("{}:{}:{}", m_ip.c_str(), m_port, int(m_protocal_type));
 		//return m_ip;
 	}
+
+	NetConnectionInterface::NetConnectionInterface(UInt64 connection_id, ConnectionManager* connection_manager) :
+		m_connection_id(connection_id), m_connection_manager(connection_manager)
+	{
+
+	}
 }

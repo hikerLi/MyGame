@@ -8,10 +8,10 @@ namespace BG
 	{
 	public:
 
-		TCPConnection();
+		TCPConnection(UInt64 connection_id, ConnectionManager* connection_manager);
 		virtual ~TCPConnection();
 
-		virtual void initialize(const ConnectionManager* connection_manager);
+		virtual void initialize();
 
 		virtual Bool connect(const NetAddr& address);
 
@@ -22,6 +22,6 @@ namespace BG
 		virtual void end();
 
 	private:
-		ConnectionManager* m_connection_manager;
+		
 	};
 }
