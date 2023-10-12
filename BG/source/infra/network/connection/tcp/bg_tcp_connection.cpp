@@ -31,13 +31,13 @@ namespace BG
 	}
 	UInt32 TCPConnection::send(const BGString& message)
 	{
-		m_socket->async_send(asio::buffer(message.c_str(), 0xFF));
-		return UInt32();
+		//m_socket->async_send(asio::buffer(message.c_str(), 0xFF));
+		return UInt32(0);
 	}
 	UInt32 TCPConnection::recv(BGString& message)
 	{
-		m_socket->async_receive(asio::buffer(message, 0xFF));
-		return UInt32();
+		//m_socket->async_receive(asio::buffer(message, 0xFF));
+		return UInt32(0);
 	}
 	void TCPConnection::setSocket(const std::shared_ptr<asio::ip::tcp::socket> socket)
 	{

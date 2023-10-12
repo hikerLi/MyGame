@@ -34,7 +34,7 @@ namespace BG
 
 		virtual void initialize() = 0;
 
-		virtual Bool connect(const NetAddr& address) = 0;
+		virtual Bool connect(const NetAddr& address, bool need_reconnect) = 0;
 
 		virtual void shutdown() = 0;
 

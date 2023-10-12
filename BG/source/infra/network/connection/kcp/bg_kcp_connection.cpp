@@ -8,9 +8,9 @@ namespace BG
 	void KCPConnection::initialize()
 	{
 	}
-	Bool KCPConnection::connect(const NetAddr& address)
+	Bool KCPConnection::connect(const NetAddr& address, bool need_reconnect)
 	{
-		return Bool();
+		return false;
 	}
 	void KCPConnection::shutdown()
 	{
@@ -20,5 +20,13 @@ namespace BG
 	}
 	void KCPConnection::end()
 	{
+	}
+	UInt32 KCPConnection::send(const BGString& message)
+	{
+		return UInt32(0);
+	}
+	UInt32 KCPConnection::recv(BGString& message)
+	{
+		return UInt32(0);
 	}
 }

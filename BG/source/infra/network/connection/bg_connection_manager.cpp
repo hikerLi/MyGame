@@ -7,6 +7,9 @@
 #include "bg_common_global_context.h"
 namespace BG
 {
+	ConnectionManager::ConnectionManager():m_tcp_socket(m_io_context), m_tcp_acceptor(m_io_context)
+	{
+	}
 	void ConnectionManager::initialize()
 	{
 		m_io_thread = std::unique_ptr<std::thread>(new std::thread(&ConnectionManager::runIOThread, this));
@@ -48,7 +51,7 @@ namespace BG
 		}
 
 		auto net_addr = NetAddr(ip, port, toNetProtocalType(protocal));
-		net_connection->connect(net_addr);
+		net_connection->connect(net_addr, true);
 	}
 
 	NetProtocalType ConnectionManager::toNetProtocalType(const BGString& protocal)

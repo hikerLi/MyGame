@@ -1,6 +1,6 @@
 #pragma once
 #include "network/connection/bg_net_connection_interface.h"
-
+#include "asio.hpp"
 namespace BG
 {
 	class ConnectionManager;

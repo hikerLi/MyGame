@@ -7,6 +7,7 @@ namespace BG
 	class ConnectionManager
 	{
 	public:
+		ConnectionManager();
 		void initialize();
 
 		void tick();

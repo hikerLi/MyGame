@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <array>
 #include <memory>
+#include <queue>
 #define UInt16 unsigned short
 #define UInt32 unsigned int
 #define UInt64 unsigned long long
@@ -16,3 +17,4 @@
 #define BGVector std::vector
 #define BGSharedPtr std::shared_ptr
 #define BGMakeShared std::make_shared
+#define BGQueue std::queue

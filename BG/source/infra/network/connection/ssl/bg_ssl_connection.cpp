@@ -8,9 +8,9 @@ namespace BG
 	void SSLConnection::initialize()
 	{
 	}
-	Bool SSLConnection::connect(const NetAddr& address)
+	Bool SSLConnection::connect(const NetAddr& address, bool need_reconnect)
 	{
-		return Bool();
+		return false;
 	}
 	void SSLConnection::shutdown()
 	{
@@ -20,5 +20,13 @@ namespace BG
 	}
 	void SSLConnection::end()
 	{
+	}
+	UInt32 SSLConnection::send(const BGString& message)
+	{
+		return UInt32(0);
+	}
+	UInt32 SSLConnection::recv(BGString& message)
+	{
+		return UInt32(0);
 	}
 }
