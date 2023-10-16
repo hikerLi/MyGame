@@ -10,6 +10,10 @@ namespace BG
 		UInt64 write(const UByte* buf, UInt64 count);
 
 		UInt64 writeToHead(const UByte* buf, UInt64 count);
+
+		UInt64 getSize();
+
+		UByte* getDataPtr();
 	private:
 		UByte* m_data;
 		/*

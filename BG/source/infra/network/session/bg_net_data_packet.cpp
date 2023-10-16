@@ -15,4 +15,12 @@ namespace BG
 	{
 		return UInt64();
 	}
+	UInt64 NetDataPacket::getSize()
+	{
+		return UInt64();
+	}
+	UByte* NetDataPacket::getDataPtr()
+	{
+		return nullptr;
+	}
 }
