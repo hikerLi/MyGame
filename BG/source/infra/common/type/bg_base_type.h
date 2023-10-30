@@ -24,3 +24,27 @@
 #define BGConcurrentQueue Concurrency::concurrent_queue
 #define BGAtomic std::atomic
 #define BGThread std::thread
+#define BGMalloc malloc
+template <typename T, typename... Args>
+T* BGNew(Args&&... args) {
+	T* ptr = static_cast<T*>(malloc(sizeof(T)));
+	if (ptr != nullptr) {
+		memset(ptr, 0, sizeof(T));
+		new (ptr) T(std::forward<Args>(args)...);
+		return ptr;
+	}
+	else {
+		return nullptr;
+	}
+}
+
+#define BGFree(object)												\
+	do {															\
+		if(object != nullptr)										\
+		{															\
+			object->~typename std::decay_t<decltype(*object)>();	\
+			free(object);											\
+			object = nullptr;										\
+		}															\
+	}while(0)								
+	

@@ -7,8 +7,9 @@ namespace BG
 	{
 
 	public:
+		void initialize();
 		void tick();
-
+		void end();
 		NetSession* AllocateNetSession();
 	private:
 		BGUnorderedMap<UInt64, NetSession*> m_session_map;

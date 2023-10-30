@@ -1,16 +1,17 @@
 #pragma once
 #include "common/type/bg_base_type.h"
-
+#include "fmt/format.h"
 namespace BG
 {
 	class ConnectionManager;
 
 	ENUM NetProtocalType
 	{
-		NetProtocalType_TCP = 0,
-		NetProtocalType_KCP = 1,
-		NetProtocalType_WS = 2,
-		NetProtocalType_HTTP = 3
+		NetProtocalType_NONE = 0,
+		NetProtocalType_TCP = 1,
+		NetProtocalType_KCP = 2,
+		NetProtocalType_WS = 3,
+		NetProtocalType_HTTP = 4
 	};
 
 	class NetAddr

@@ -1,5 +1,5 @@
 #include "network/session/bg_net_data_packet_manager.h"
-
+#include "network/session/bg_net_data_packet.h"
 namespace BG
 {
 	NetDataPacketManager::NetDataPacketManager()

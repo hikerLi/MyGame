@@ -2,7 +2,7 @@ project(test_server)
 
 file(GLOB_RECURSE ALL_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
-
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../thirdparty/asio-1.28.0/include)
 
 add_executable(${PROJECT_NAME} ${ALL_FILES})
 

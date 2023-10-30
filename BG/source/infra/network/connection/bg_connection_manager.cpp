@@ -9,6 +9,14 @@ namespace BG
 {
 	ConnectionManager::ConnectionManager():m_tcp_socket(m_io_context), m_tcp_acceptor(m_io_context)
 	{
+		for (auto iter = m_connection_map.begin(); iter != m_connection_map.end(); iter++)
+		{
+			auto net_connection = iter->second;
+			BGFree(net_connection);
+		}
+	}
+	ConnectionManager::~ConnectionManager()
+	{
 	}
 	void ConnectionManager::initialize()
 	{
@@ -16,9 +24,29 @@ namespace BG
 	}
 	void ConnectionManager::tick()
 	{
+		for (auto iter = m_connection_map.begin(); iter != m_connection_map.end(); iter++)
+		{
+			auto connection = iter->second;
+			if (connection)
+			{
+				connection->tick();
+			}
+		}
 	}
 	void ConnectionManager::end()
 	{
+		for (auto iter = m_connection_map.begin(); iter != m_connection_map.end(); iter++)
+		{
+			auto connection = iter->second;
+			if (connection)
+			{
+				connection->end();
+			}
+		}
+		m_io_context.stop();
+		m_tcp_socket.close();
+		m_tcp_acceptor.close();
+		m_io_thread.release();
 	}
 	void ConnectionManager::runIOThread()
 	{
@@ -39,15 +67,15 @@ namespace BG
 		UInt64 connection_id = m_connection_id_allocator.allocateID();
 		if (protocal == "tcp")
 		{
-			net_connection = new TCPConnection(connection_id, this);
+			net_connection = BGNew<TCPConnection>(connection_id, this);
 		}
 		else if (protocal == "kcp")
 		{
-			net_connection = new KCPConnection(connection_id, this);
+			net_connection = BGNew<KCPConnection>(connection_id, this);
 		}
 		else if (protocal == "ssl")
 		{
-			net_connection = new SSLConnection(connection_id, this);
+			net_connection = BGNew<SSLConnection>(connection_id, this);
 		}
 
 		auto net_addr = NetAddr(ip, port, toNetProtocalType(protocal));
@@ -72,6 +100,7 @@ namespace BG
 		{
 			return NetProtocalType::NetProtocalType_WS;
 		}
+		return NetProtocalType::NetProtocalType_NONE;
 	}
 
 	void ConnectionManager::listen(const BGString& addr)
@@ -112,10 +141,10 @@ namespace BG
 	{
 		//create tcp_listner,确定创建tcpconnection和session
 		UInt64 connection_id = m_connection_id_allocator.allocateID();
-		TCPConnection* tcp_connection = new TCPConnection(connection_id, this);
+		TCPConnection* tcp_connection = BGNew<TCPConnection>(connection_id, this);
 		tcp_connection->initialize();
 		tcp_connection->setSocket(socket);
-		//m_connection_map[] = tcp_connection;
+		m_connection_map[connection_id] = tcp_connection;
 		g_common_global_context.m_session_manager.AllocateNetSession()->bindConnection(connection_id);
 	}
 
@@ -126,7 +155,7 @@ namespace BG
 	void ConnectionManager::kcpAcceptCB(const asio::error_code& error, const std::shared_ptr<asio::ip::tcp::socket> socket)
 	{
 		UInt64 connection_id = m_connection_id_allocator.allocateID();
-		KCPConnection* net_connection = new KCPConnection(connection_id, this);
+		KCPConnection* net_connection = BGNew<KCPConnection>(connection_id, this);
 	}
 
 	void ConnectionManager::sslListen(UInt16 port)
@@ -136,7 +165,7 @@ namespace BG
 	void ConnectionManager::sslAcceptCB(const asio::error_code& error, const std::shared_ptr<asio::ip::tcp::socket> socket)
 	{
 		UInt64 connection_id = m_connection_id_allocator.allocateID();
-		SSLConnection* net_connection = new SSLConnection(connection_id, this);
+		SSLConnection* net_connection = BGNew<SSLConnection>(connection_id, this);
 	}
 
 	asio::io_context& ConnectionManager::getIOContext()

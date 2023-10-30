@@ -5,7 +5,7 @@ namespace BG
 	BackendGlobalContext g_backend_context;
 	BackendGlobalContext::BackendGlobalContext()
 	{
-		m_mono_runtime_ptr = new MonoRuntime();
+		m_mono_runtime_ptr = BGNew<MonoRuntime>();
 	}
 
 	BackendGlobalContext::~BackendGlobalContext()

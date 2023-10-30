@@ -6,6 +6,7 @@ namespace BG
 	{
 	public:
 		NetDataPacket();
+		~NetDataPacket();
 
 		UInt64 write(const UByte* buf, UInt64 count);
 
@@ -22,5 +23,8 @@ namespace BG
 		*/
 		UInt64 m_head_offset;
 		UInt64 m_body_offset;
+		const UInt64 m_head_len = 1024;
+		const UInt64 m_body_init_len = 4096;
+		const UInt64 m_body_incr_len = 1024;
 	};
 }

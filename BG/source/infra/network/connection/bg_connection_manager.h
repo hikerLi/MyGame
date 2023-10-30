@@ -8,6 +8,7 @@ namespace BG
 	{
 	public:
 		ConnectionManager();
+		~ConnectionManager();
 		void initialize();
 
 		void tick();

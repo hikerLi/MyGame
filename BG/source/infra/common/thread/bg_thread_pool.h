@@ -54,7 +54,7 @@ namespace BG
 	template<class F, class ...Args>
 	inline void ThreadPool::enqueue(F&& f, Args && ...args)
 	{
-		Task* task = new Task(std::bind(std::forward<F>(f), std::forward<Args>(args)...));
+		Task* task = BGNew<Task>(std::bind(std::forward<F>(f), std::forward<Args>(args)...));
 		m_tasks.push(task);
 	}
 }

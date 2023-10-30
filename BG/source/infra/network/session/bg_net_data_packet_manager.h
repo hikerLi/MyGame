@@ -1,6 +1,7 @@
 #pragma once
 
 #include "common/pool/bg_object_pool.h"
+#include "network/session/bg_net_data_packet.h"
 namespace BG
 {
 	class NetDataPacket;

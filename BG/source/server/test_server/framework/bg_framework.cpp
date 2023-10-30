@@ -15,13 +15,16 @@ namespace BG
 	void Framework::begin()
 	{
 		m_script_manager.begin();
+
+		BGString inner_addr = g_common_global_context.m_command_config.getParamConfig("inner_addr");
+		g_common_global_context.m_connection_manager.listen(inner_addr);
 	}
 
 	void Framework::run()
 	{
 		while (m_running)
 		{
-			m_script_manager.run();
+			g_common_global_context.tick();
 		}
 	}
 

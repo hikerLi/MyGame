@@ -13,11 +13,20 @@ namespace BG
 
 	void CommonGlobalContext::initialize()
 	{
-		BGString inner_addr = m_command_config.getParamConfig("inner_addr");
+		
+		m_connection_manager.initialize();
+		m_session_manager.initialize();
+	}
 
+	void CommonGlobalContext::tick()
+	{
+		m_connection_manager.tick();
+		m_session_manager.tick();
 	}
 
 	void CommonGlobalContext::end()
 	{
+		m_connection_manager.end();
+		m_session_manager.end();
 	}
 }

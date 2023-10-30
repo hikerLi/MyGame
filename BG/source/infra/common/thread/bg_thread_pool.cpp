@@ -13,7 +13,7 @@ namespace BG
 
 	Thread::Thread(ThreadPool* thread_pool_ref): m_thread_pool_ref(thread_pool_ref), m_stop(false)
 	{
-		m_thread = new BGThread(&Thread::threadLogic, this);
+		m_thread = BGNew<BGThread>(&Thread::threadLogic, this);
 	}
 
 	Thread::~Thread()

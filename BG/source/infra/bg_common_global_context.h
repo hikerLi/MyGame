@@ -11,7 +11,7 @@ namespace BG
 		CommonGlobalContext();
 		~CommonGlobalContext();
 		void initialize();
-
+		void tick();
 		void end();
 
 	public:

@@ -2,7 +2,11 @@
 
 namespace BG
 {
-	NetDataPacket::NetDataPacket()
+	NetDataPacket::NetDataPacket() : m_head_offset(0), m_body_offset(0)
+	{
+	}
+
+	NetDataPacket::~NetDataPacket()
 	{
 	}
 
@@ -17,7 +21,7 @@ namespace BG
 	}
 	UInt64 NetDataPacket::getSize()
 	{
-		return UInt64();
+		return m_head_offset + m_body_offset;
 	}
 	UByte* NetDataPacket::getDataPtr()
 	{

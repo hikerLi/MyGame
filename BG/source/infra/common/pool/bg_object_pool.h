@@ -8,8 +8,9 @@ namespace BG
 	{
 	public:
 		ObjectPool(UInt64 chunck_size = 4096);
+		~ObjectPool();
 		PoolType* allocate();
-		void deallocate(const PoolType* item);
+		void deallocate(PoolType* item);
 		void resize(UInt64 new_chunck_size);
 	private:
 		const UInt32 m_incr_item_count = 1024;
@@ -21,6 +22,17 @@ namespace BG
 	inline ObjectPool<PoolType>::ObjectPool(UInt64 chunck_size) : m_chunck_size(chunck_size)
 	{
 		resize(chunck_size);
+	}
+
+	template<class PoolType>
+	inline ObjectPool<PoolType>::~ObjectPool()
+	{
+		while (m_item_pool.size() != 0)
+		{
+			auto object = m_item_pool.front();
+			m_item_pool.pop();
+			//BGFree(object);
+		}
 	}
 
 	template<class PoolType>
@@ -39,7 +51,7 @@ namespace BG
 	}
 
 	template<class PoolType>
-	inline void ObjectPool<PoolType>::deallocate(const PoolType* item)
+	inline void ObjectPool<PoolType>::deallocate(PoolType* item)
 	{
 		item->~PoolType();
 		m_item_pool.push(item);
@@ -53,10 +65,10 @@ namespace BG
 			return;
 		}
 
-		std::aligned_storage<sizeof(PoolType), alignof(PoolType)>::type pool_object_vector[new_chunck_size];
+		PoolType* pool_object_vector_ptr = (PoolType*)BGMalloc(sizeof(PoolType) * new_chunck_size);
 		for (UInt64 i = 0; i < new_chunck_size; i++)
 		{
-			PoolType* pool_object = reinterpret_cast<PoolType>(pool_object_vector + sizeof(PoolType) * i);
+			PoolType* pool_object = reinterpret_cast<PoolType*>(pool_object_vector_ptr + i);
 			m_item_pool.push(pool_object);
 		}
 	}

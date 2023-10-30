@@ -1,5 +1,5 @@
 #include "bg_net_connection_interface.h"
-#include "thirdparty/fmt/include/fmt/format.h"
+
 namespace BG
 {
 	NetAddr::NetAddr(const BGString ip, UInt16 port, const NetProtocalType& protocal_type)
