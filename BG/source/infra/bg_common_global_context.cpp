@@ -1,5 +1,5 @@
 #include "bg_common_global_context.h"
-
+#include "common/log/bg_log.h"
 namespace BG
 {
 	CommonGlobalContext g_common_global_context;
@@ -13,7 +13,8 @@ namespace BG
 
 	void CommonGlobalContext::initialize()
 	{
-		
+		BGString script_name = g_common_global_context.m_command_config.getParamConfig("service_name");
+		g_log_context.initialize(LOG_TYPE_TRACE, script_name);
 		m_connection_manager.initialize();
 		m_session_manager.initialize();
 	}

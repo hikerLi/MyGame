@@ -5,11 +5,11 @@ namespace BG
 	void Framework::initialize(int argc, void* argv[])
 	{
 		g_common_global_context.m_command_config.parserParam(argc, argv);
-
+		g_common_global_context.initialize();
 		BGString script_name = g_common_global_context.m_command_config.getParamConfig("service_name");
 		script_name = "test_server";
 		m_script_manager.initialize(script_name);
-		g_common_global_context.initialize();
+		
 	}
 
 	void Framework::begin()

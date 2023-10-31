@@ -5,15 +5,15 @@
 #include <mono/metadata/appdomain.h>
 #include <mono/metadata/class.h>
 #include <mono/metadata/object.h>
-
+#include <common/log/bg_log.h>
 #include <iostream>
 namespace BG
 {
 	void MonoRuntime::initialize(const BGString& appName)
 	{
-		std::cout << "appName:" << appName << std::endl;
-		mono_set_dirs("F:\\Projects\\MyGame\\BG\\thirdparty\\mono-7.0.10\\lib\\win\\net7.0", "");
-		BGString assemble_path = "F:\\Projects\\MyGame\\BG\\apps\\GameServer\\bin\\Debug\\net7.0";
+		LOG_INFO("MonoRuntime script_name:{}", appName);
+		mono_set_dirs("G:\\MyProjects\\Tools\\microsoft.netcore.app.runtime.mono.win-x64.7.0.10", "");
+		BGString assemble_path = "G:\\MyProjects\\MyGame\\BG\\apps\\GameServer\\bin\\Debug\\net7.0";
 		mono_set_assemblies_path(assemble_path.c_str());
 		//auto domain = mono_jit_init_version(appName.c_str(), nullptr);
 		auto domain = mono_jit_init((appName + ".dll").c_str());

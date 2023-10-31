@@ -1,6 +1,6 @@
 #include "bg_script_manager.h"
 #include "common/utils/utils.h"
-#include <iostream>
+#include <common/log/bg_log.h>
 namespace BG
 {
 	void ScriptManager::initialize(BGString script_name)
@@ -8,7 +8,7 @@ namespace BG
 		m_script_name = Utils::toCamelCase(script_name);
 		
 		m_mono_runtime.initialize(m_script_name);
-		std::cout << "scriptmanager script_name:" << m_script_name << std::endl;
+		LOG_INFO("scriptmanager script_name:{}", m_script_name);
 	}
 
 	void ScriptManager::begin()
