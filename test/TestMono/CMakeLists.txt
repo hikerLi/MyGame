@@ -14,12 +14,7 @@ target_link_libraries(TestMono ${MONO_LIB_PATH}/lib/coreclr.import.lib)
 
 
 link_directories(${MONO_LIB_PATH}/lib)
-message(${CMAKE_SHARED_LIBRARY_PREFIX}coreclr${CMAKE_SHARED_LIBRARY_SUFFIX})
-message(${CMAKE_CURRENT_SOURCE_DIR}/lib)
-find_library(ClrLibPath NAMES ${CMAKE_SHARED_LIBRARY_PREFIX}coreclr${CMAKE_SHARED_LIBRARY_SUFFIX} PATHS ${CMAKE_CURRENT_SOURCE_DIR}/lib)
-find_library(CoreLibPath ${CMAKE_SHARED_LIBRARY_PREFIX}System.Private.CoreLib${CMAKE_SHARED_LIBRARY_SUFFIX} HINTS ${MONO_LIB_PATH}/lib)
-message("${ClrLibPath}")
-target_link_libraries(${PROJECT_NAME} ${ClrLibPath} ${CoreLibPath})
+
 
 target_compile_options(TestMono PRIVATE /MT)
 target_link_libraries(TestMono)

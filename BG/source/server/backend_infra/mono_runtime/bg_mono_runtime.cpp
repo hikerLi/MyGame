@@ -12,7 +12,7 @@ namespace BG
 	void MonoRuntime::initialize(const BGString& appName)
 	{
 		LOG_INFO("MonoRuntime script_name:{}", appName);
-		mono_set_dirs("G:\\MyProjects\\Tools\\microsoft.netcore.app.runtime.mono.win-x64.7.0.10", "");
+		mono_set_dirs("G:\\MyProjects\\Tools\\microsoft.netcore.app.runtime.mono.win-x64.7.0.2\\runtimes\\win-x64\\lib\\net7.0", "");
 		BGString assemble_path = "G:\\MyProjects\\MyGame\\BG\\apps\\GameServer\\bin\\Debug\\net7.0";
 		mono_set_assemblies_path(assemble_path.c_str());
 		//auto domain = mono_jit_init_version(appName.c_str(), nullptr);
