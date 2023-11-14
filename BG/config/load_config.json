@@ -1,0 +1,14 @@
+{
+	"mono-path":{
+		"linux": "G:\MyProjects\MyGame\tools\microsoft.netcore.app.runtime.mono.linux-x64.7.0.2\runtimes\linux-x64\lib\net7.0",
+		"windows": "G:\MyProjects\MyGame\tools\microsoft.netcore.app.runtime.mono.win-x64.7.0.2\runtimes\win-x64\lib\net7.0"
+	},
+	"script-path":[
+		{
+			"game_server": ""
+		},
+		{
+			"login_server":""
+		}
+	]
+}

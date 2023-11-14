@@ -1,0 +1,18 @@
+BG 项目代码
+ -- apps 这里时c#脚本工程
+     -- AppCore 基础核心脚本
+     -- Common 所有程序都需要的通用脚本
+     -- GameServer 游戏服务脚本
+     -- packages c#所需要的包
+ -- source
+     -- infra 包括所有程序都需要的基础功能
+     -- precompile 预处理
+     -- server
+         -- backend_infra 后端程序需要的基础功能
+         -- game_server 后端可执行程序
+         -- test_server 后端测试程序
+     -- test_client 测试后端的客户端测试程序，写一些测试用例，例如对后端的自动化测试
+ -- thirdparty 存放第三方库，暂时放这里，后面迁移
+Documents 存放所有目录，暂时放这里，后面迁移
+test 写的一些功能测试的代码
+tools 一些工具以及运行时环境
