@@ -1,6 +1,7 @@
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${ThirdParty_Path}/thirdparty/mono-7.0.2/include/mono-2.0)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${ThirdParty_Path}/thirdparty/asio-1.28.0/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${ThirdParty_Path}/thirdparty/json-3.11.2/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${ThirdParty_Path}/thirdparty/recastnavigation-1.6.0/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${ThirdParty_Path}/thirdparty/fmt-10.0.0/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${ThirdParty_Path}/thirdparty/spdlog-1.12.0/include)

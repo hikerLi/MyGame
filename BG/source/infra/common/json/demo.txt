@@ -1,0 +1,77 @@
+struct Address {
+    std::string city;
+    std::string state;
+    std::string country;
+};
+
+struct Hobby {
+    std::string name;
+    std::string level;
+};
+
+struct Person {
+    std::string name;
+    int age;
+    Address address;
+    std::vector<Hobby> hobbies;
+};
+
+void from_json(const json& j, Address& a) {
+    j.at("city").get_to(a.city);
+    j.at("state").get_to(a.state);
+    j.at("country").get_to(a.country);
+}
+
+void from_json(const json& j, Hobby& h) {
+    j.at("name").get_to(h.name);
+    j.at("level").get_to(h.level);
+}
+
+void from_json(const json& j, Person& p) {
+    j.at("name").get_to(p.name);
+    j.at("age").get_to(p.age);
+    j.at("address").get_to(p.address);
+    j.at("hobbies").get_to(p.hobbies);
+}
+
+int main() {
+    std::string json_str = R"(
+        {
+            "name": "Alice",
+            "age": 25,
+            "address": {
+                "city": "New York",
+                "state": "NY",
+                "country": "USA"
+            },
+            "hobbies": [
+                {
+                    "name": "reading",
+                    "level": "high"
+                },
+                {
+                    "name": "movies",
+                    "level": "medium"
+                },
+                {
+                    "name": "hiking",
+                    "level": "low"
+                }
+            ]
+        }
+    )";
+
+    json j = json::parse(json_str);
+
+    Person p = j.get<Person>();
+
+    std::cout << "Name: " << p.name << std::endl;
+    std::cout << "Age: " << p.age << std::endl;
+    std::cout << "Address: " << p.address.city << ", " << p.address.state << ", " << p.address.country << std::endl;
+    std::cout << "Hobbies:" << std::endl;
+    for (const auto& h : p.hobbies) {
+        std::cout << "- " << h.name << " (" << h.level << ")" << std::endl;
+    }
+
+    return 0;
+}

@@ -5,6 +5,7 @@ project(infra)
 file(GLOB_RECURSE ALL_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../thirdparty/fmt-10.0.0/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../thirdparty/json-3.11.2/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../thirdparty/asio-1.28.0/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../thirdparty/spdlog-1.12.0/include)
 add_library(${PROJECT_NAME} STATIC ${ALL_FILES})
