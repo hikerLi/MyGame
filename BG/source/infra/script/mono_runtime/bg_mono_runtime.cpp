@@ -1,4 +1,4 @@
-#include "mono_runtime\bg_mono_runtime.h"
+#include "script\mono_runtime\bg_mono_runtime.h"
 
 #include <mono/jit/jit.h>
 #include <mono/metadata/assembly.h>

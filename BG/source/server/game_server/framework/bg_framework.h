@@ -15,7 +15,6 @@ namespace BG
 		void end();
 
 	private:
-		ScriptManager m_script_manager;
 		Bool m_running = true;
 	};
 }

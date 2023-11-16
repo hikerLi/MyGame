@@ -17,6 +17,12 @@ namespace BG
 		g_log_context.initialize(LOG_TYPE_TRACE, script_name);
 		m_connection_manager.initialize();
 		m_session_manager.initialize();
+		m_script_manager.initialize(script_name);
+	}
+
+	void CommonGlobalContext::begin()
+	{
+		m_script_manager.begin();
 	}
 
 	void CommonGlobalContext::tick()
@@ -29,5 +35,6 @@ namespace BG
 	{
 		m_connection_manager.end();
 		m_session_manager.end();
+		m_script_manager.end();
 	}
 }
